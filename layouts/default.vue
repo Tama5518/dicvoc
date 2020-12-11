@@ -9,7 +9,7 @@
             href="/"
             class="text-xl sm:text-2xl font-bold uppercase text-blue-900 hover:text-blue-800"
           >
-            TOTAL Sample Project
+            DicVoc
           </a>
         </p>
         <nav class="hidden md:flex text-lg">
@@ -19,6 +19,12 @@
             class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
           >
             メンバーリスト
+          </a>
+          <a
+            href="/card"
+            class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
+          >
+            card
           </a>
           <a
             v-if="isSignedIn()"
@@ -64,7 +70,7 @@
       <footer class="p-4">
         <p class="text-gray-500 font-xs text-center">
           <span class="inline-block pt-2 border-t md:pt-8 md:border-none">
-            provided by GuildWorks Inc.
+            Tamaki Takaki
           </span>
         </p>
       </footer>
