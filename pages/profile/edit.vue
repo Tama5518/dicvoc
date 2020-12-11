@@ -9,6 +9,9 @@
         登録
       </button>
     </PageHeading>
+    <label class="text-sm title-font text-gray-500">
+            プロフィール画像
+          </label>
     <div class="lg:w-11/12 mx-auto flex flex-wrap">
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
         <ProfileNameIconEdit
@@ -20,15 +23,13 @@
         />
         <div class="pt-2">
           <label class="text-sm title-font text-gray-500">
-            役割
+            年齢
           </label>
-          <div class="relative">
+          <div class="age">
             <select
-              v-model="userData.role"
               class="appearance-none bg-white w-full border py-3 px-4 pr-8 rounded focus:outline-none"
             >
-              <option value="admin">リーダー</option>
-              <option value="member">メンバー</option>
+              <option v-for="age in 100" :key="age"> {{ age }} </option>
             </select>
             <div
               class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2"
@@ -46,6 +47,9 @@
           </div>
         </div>
         <hr class="my-4 sm:my-8" />
+        <label class="text-sm title-font text-gray-500">
+          意気込み・ひとこと・ポエムなど
+          </label>
         <textarea
           v-model="userData.comment"
           class="w-full h-40 border px-1"
