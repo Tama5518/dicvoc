@@ -160,7 +160,6 @@
         <!-- 一番したのテンプレートの文字位置 -->
         
       </div>
-      
     </div>
   </div>
 </template>
@@ -193,7 +192,6 @@ type User = {
     hobby: string;
   };
 };
-
 export default defineComponent({
   components: {
     PageHeading,
@@ -218,7 +216,6 @@ export default defineComponent({
         hobby: "",
       },
     });
-
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
