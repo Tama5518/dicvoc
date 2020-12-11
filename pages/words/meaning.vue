@@ -5,25 +5,23 @@
     <div
       class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left"
     >
+    <p class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left font-bold">
+            Vocaburary Check!!
+        </p>
       <h1
-        class="uppercase text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2"
+        class="text-5xl text-blue-900 font-bold leading-none tracking-wide mt-20 mb-20"
       >
-        Meaning
+        表彰する
       </h1>
-      <p
-       class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
-       >
-        前へ
-      </p>
-      <p
-        class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
-        >
-        次へ
-      </p>
+      <div class="flex content-center mt-20 mb-20">
+          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button>
+        </div>
+      <div class="text-center mt-10">
+          <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
+          <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
+        </div>
     </div>
-    <div class="mb-16 sm:mb-0 mt-8 sm:mt-0 sm:w-3/5 sm:pl-12">
-      <SvgImage />
-    </div>
+    
   </div>
 </template>
 <script lang="ts">

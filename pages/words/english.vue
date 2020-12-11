@@ -1,27 +1,23 @@
 <template>
   <div class="bg-white flex flex-col font-sans sm:flex-row jusitfy-between items-center py-12">
-    <div class="container mx-auto">
+    <div class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left ">
         <p class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left font-bold">
             Vocaburary Check!!
         </p>
         <h1
-        class="uppercase text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 sm:w-2/5 flex flex-col items-center sm:items-start text-center"
+        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 sm:w-2/5 flex flex-col items-center sm:items-start text-center mt-20 mb-20"
       >
-        English
+        award
       </h1>
-        <nav class="md:flex text-lg">
-          <a
-            class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold text-align: left;"
-          >
-            前へ
-          </a>
-          <a
-            class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold text-align: right;"
-          >
-            次へ
-          </a>
-        </nav>
-        <button class="bg-gray-500 font-bold py-10 px-20 rounded-l sm:w-2/5 flex flex-col items-center"></button>
+        
+        <div class="flex content-center mt-20 mb-20">
+          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button>
+        </div>
+        <div class="text-center mt-10">
+          <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
+          <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
+        </div>
+        
     </div>
   </div>
 </template>
