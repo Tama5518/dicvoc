@@ -27,18 +27,17 @@ import firebase from '@/plugins/firebase.ts'
 
 type User = {
   id: string
-  name: string
+  username: string
   email: string
-  role: string
-  iconUrl: string
+  // role: string
+  // iconUrl: string
   comment: string
   profile: {
-    belongs: string
-    nickname: string
+    occupation: string
+    name: string
+    learningtime: string
     birthplace: string
-    birthday: string
-    bloodType: string
-    sign: string
+    motivation: string
     hobby: string
   }
 }
@@ -52,18 +51,17 @@ export default defineComponent({
   setup(_, { root }: SetupContext) {
     const userData = reactive<User>({
       id: '',
-      name: '',
+      username: '',
       email: '',
-      role: '',
-      iconUrl: '',
+      // role: '',
+      // iconUrl: '',
       comment: '',
       profile: {
-        belongs: '',
-        nickname: '',
+        occupation: '',
+        name: '',
+        learningtime: '',
         birthplace: '',
-        birthday: '',
-        bloodType: '',
-        sign: '',
+        motivation: '',
         hobby: '',
       },
     })
@@ -75,10 +73,10 @@ export default defineComponent({
       .then((doc) => {
         if (doc.exists) {
           userData.id = root.$route.params.id
-          userData.name = doc.data().name
+          userData.username = doc.data().name
           userData.email = doc.data().email
-          userData.role = doc.data().role
-          userData.iconUrl = doc.data().iconUrl
+          // userData.role = doc.data().role
+          // userData.iconUrl = doc.data().iconUrl
           userData.profile = doc.data().profile
           userData.comment = doc.data().comment
         }
