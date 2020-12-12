@@ -83,7 +83,6 @@ export default defineComponent({
       wordIndex.value = wordIndex.value + 1}
       else(window.location.href = "/words")
     }
-    const meaningsIndex = ref(0)
 
     const displayMode = ref("english")
     const chanegeToAnother = () : void => {

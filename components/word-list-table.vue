@@ -3,7 +3,6 @@
     <table class="w-full text-md bg-white">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
-          <th class="text-left p-3 px-5">Number</th>
           <th class="text-left p-3 px-5">English word</th>
           <th class="text-left p-3 px-5">Meaning</th>
           <th></th>
@@ -14,21 +13,18 @@
           v-for="(word, index) in wordList"
           :key="index"
           class="border-b bg-gray-100 hover:bg-orange-100 cursor-pointer"
-          @click="wordLink(word.id)"
+          @click="wordLink()"
         >
-          <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-            {{ word.number }}
-          </td>
           <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
             {{ word.english }}
           </td>
-          <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-            {{ word.meaning }}
+          <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal"
+            >
+            {{ word.meanings }}
           </td>
           <td class="py-3 px-5">
             <div class="flex justify-end items-center">
-              <a
-                :href="'/vocaburary/0001/' + word.id"
+              <div
                 class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline flex items-center"
               >
                 <span
@@ -47,7 +43,7 @@
                   </svg>
                 </span>
                 More
-              </a>
+              </div>
             </div>
           </td>
         </tr>
@@ -57,39 +53,55 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'nuxt-composition-api'
+import { defineComponent, reactive, ref} from 'nuxt-composition-api'
 import wordslistJson from '@/mock/wordslist.json'
 import firebase from '@/plugins/firebase.ts'
-//型エイリアス//
 type Word = {
   id: string
-  number: string
   english: string
-  pronounciation: string
-  part: string
-  illustration: string
-  meaning: string
-  example:string
-  more: {
-    synonims: string
-    anti: string
-    inflectedform: string
-    etymology: string
+  meanings: string
   }
-}
 export default defineComponent({
   name: 'ListTable',
-  setup(_) {
-    const wordList = reactive(wordslistJson.wordslistData)
-    console.log(wordList)
-    const wordLink = (wordId: string): void => {
-      window.location.href = '/vocaburary/0001' + wordId
+  setup(_, { root: { $store } }) {
+    const wordList = reactive<Word[]>([])
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        getWordsData(user.uid)
+      } else {
+      }
+    })
+
+    const getWordsData = (userId: any) => {
+      firebase
+        .firestore()
+        .collection("words") 
+        .where("userId", "==", userId)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+          wordList.push({
+            id: doc.data().id,
+            english: doc.data().english,
+            meanings: doc.data().meanings
+          })
+          
+        })
+      })    
+        .catch((err) => {
+          console.log('Error getting document', err)
+        })
     }
+    const wordLink = (wordId: string): void =>{
+      console.log(wordList)
+      window.location.href = '/words/' + wordId
+    }
+    
     return {
       wordList,
-      wordLink,
+      wordLink
     }
-  },
+  }
 })
 </script>
 <style>
