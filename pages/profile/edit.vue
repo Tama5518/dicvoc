@@ -27,7 +27,7 @@
           </label>
           <div class="age">
             <select
-              class="appearance-none bg-white w-full border py-3 px-4 pr-8 rounded focus:outline-none"
+              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
             >
               <option v-for="age in 100" :key="age"> {{ age }} </option>
             </select>
