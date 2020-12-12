@@ -9,12 +9,14 @@
         class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
         {{ wordList[wordIndex].english }}
       </h1>
-      <h1
-        v-if='wordList.length && displayMode == "meaning"'
-        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
-        {{ wordList[wordIndex].meanings }}
-      </h1>
-        
+      <div v-if='wordList.length && displayMode == "meaning"'>
+        <h1
+          class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20"
+          v-for="(meaning, index) in wordList[wordIndex].meanings"
+            :key="index">
+          {{ meaning }}
+        </h1>
+      </div>
         <div class="flex content-center mt-20 mb-20">
           <button 
             @click="chanegeToAnother()"
@@ -53,7 +55,6 @@ export default defineComponent({
     })
 
     const getWordsData = (userId: any) => {
-      console.log(userId)
       firebase
         .firestore()
         .collection("words") 
@@ -82,9 +83,11 @@ export default defineComponent({
       wordIndex.value = wordIndex.value + 1}
       else(window.location.href = "/words")
     }
+    const meaningsIndex = ref(0)
+
     const displayMode = ref("english")
     const chanegeToAnother = () : void => {
-      console.log('chanegeToAnother', wordList[wordIndex.value].meanings)
+      console.log("wordList",wordList)
       if (displayMode.value == "meaning"){
         displayMode.value = "english"
       }
