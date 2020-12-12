@@ -13,7 +13,7 @@
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-              ニックネーム
+              本名
             </th>
             <td class="p-4">
               {{ profile.nickname }}
@@ -29,7 +29,7 @@
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-              TOIEC点数（点）
+              出身地
             </th>
             <td class="p-4">
               {{ profile.birthday }}

@@ -9,7 +9,7 @@
           <th></th>
         </tr>
       </thead>
-      <tbody class="text-gray-900">
+      <tbody class="text-black-900">
         <tr
           v-for="(user, index) in userList"
           :key="index"

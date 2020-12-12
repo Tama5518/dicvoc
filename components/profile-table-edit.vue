@@ -8,7 +8,7 @@
               職種
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.belongs" class="border w-full px-1" />
+              <input v-model="profile.occupation" class="border w-full px-1" />
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
@@ -16,7 +16,7 @@
               本名
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.nickname" class="border w-full px-1" />
+              <input v-model="profile.name" class="border w-full px-1" />
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
@@ -24,24 +24,21 @@
               英語学習期間（年）
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.birthplace" class="border w-full px-1" />
+              <input v-model="profile.learningtime" class="border w-full px-1" />
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-            TOIEC点数（点）
+            出生地
             </th>
             <td class="p-4 w-full">
               <select
-              v-model="wordData.wordclass"
+              v-model="profile.birthplace"
               class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
             >
-              <option value="-400">0~400点</option>
-              <option value="401-600">401~600点</option>
-              <option value="601-700">601~700点</option>
-              <option value="701-800">701~800点</option>
-              <option value="801-900">801~900点</option>
-              <option value="901-990">901~990点</option>
+              <option value="japan">日本</option>
+              <option value="others">英語圏</option>
+             
             </select>
             </td>
           </tr>
@@ -50,7 +47,7 @@
             英語を学ぶ動機
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.bloodType" class="border w-full px-1" />
+              <input v-model="profile.motivation" class="border w-full px-1" />
             </td>
           </tr>
           

@@ -8,7 +8,7 @@
       </div>
     </div>
     <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         ユーザーネーム
       </h3>
       <h2

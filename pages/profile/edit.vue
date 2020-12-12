@@ -19,7 +19,7 @@
           :user-name="userData.name"
           :email="userData.email"
           @changeName="changeName"
-          @setIcon="setIcon"
+
         />
         <div class="pt-2">
           <label class="text-sm title-font text-gray-500">
@@ -71,18 +71,17 @@ import firebase from '@/plugins/firebase.ts'
 
 type User = {
   id: string
-  name: string
+  username: string
   email: string
-  role: string
+  // role: string
   iconUrl: string
   comment: string
   profile: {
-    belongs: string
-    nickname: string
+    occupation: string
+    name: string
+    learningtime: string
     birthplace: string
-    birthday: string
-    bloodType: string
-    sign: string
+    motivation: string
     hobby: string
   }
 }
@@ -94,44 +93,46 @@ export default defineComponent({
     ProfileNameIconEdit,
   },
   setup(_, { root }: SetupContext) {
-    const userData = reactive<User>({
+    const userData = reactive<any>({
       id: '',
-      name: '',
+      username: '',
       email: '',
-      role: '',
+      // role: '',
       iconUrl: '',
       comment: '',
       profile: {
-        belongs: '',
-        nickname: '',
+        occupation: '',
+        name: '',
+        learningtime: '',
         birthplace: '',
-        birthday: '',
-        bloodType: '',
-        sign: '',
+        motivation: '',
         hobby: '',
       },
     })
 
     firebase.auth().onAuthStateChanged(function (user) {
+      console.log('userData',userData)
       if (user) {
         // User is signed in.
         userData.id = user.uid
-        userData.email = user.email
+        // userData.email = user.email
         getUserData(user)
       } else {
         // No user is signed in.
       }
     })
-    const getUserData = (user) => {
+    const getUserData = (user: any) => {
+      console.log('getUserData', user)
       firebase
         .firestore()
         .collection('users')
         .doc(user.uid)
         .get()
         .then((doc) => {
+          console.log('doc', doc)
           if (doc.exists) {
-            userData.name = doc.data().name
-            userData.role = doc.data().role
+            userData.username = doc.data().username
+            // userData.role = doc.data().role
             userData.iconUrl = doc.data().iconUrl
             userData.profile = doc.data().profile
             userData.comment = doc.data().comment
@@ -141,9 +142,9 @@ export default defineComponent({
           console.log('Error getting user document', err);
         })
     }
-    const changeName = (name) => {
-      userData.name = name
-    }
+    // const changeName = (name: any) => {
+    //   userData.name = name
+    // }
     const setIcon = (file: File): void => {
       // ストレージのルートへの参照を取得
       const storageRef = firebase.storage().ref()
@@ -161,9 +162,9 @@ export default defineComponent({
     }
     const setProfile = (): void => {
       const data = {
-        name: userData.name,
+        username: userData.username,
         email: userData.email,
-        role: userData.role,
+        // role: userData.role,
         iconUrl: userData.iconUrl,
         comment: userData.comment,
         profile: userData.profile,
@@ -181,7 +182,7 @@ export default defineComponent({
       userData,
       setIcon,
       setProfile,
-      changeName,
+      // changeName,
     }
   },
 })
