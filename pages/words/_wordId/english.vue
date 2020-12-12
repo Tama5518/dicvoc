@@ -11,11 +11,17 @@
       </h1>
         
         <div class="flex content-center mt-20 mb-20">
-          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button>
+          <a href = "/words/0001/meaning">
+           <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../../assets/image/rotation.png"></button>
+           </a>
         </div>
         <div class="text-center mt-10">
-          <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
-          <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
+          <a href = "/words/0000/english">
+           <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
+          </a>
+          <a href = "/words/0002/english">
+           <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
+          </a>
         </div>
         
     </div>
