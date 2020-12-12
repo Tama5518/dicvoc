@@ -18,7 +18,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.english}} </p>
+        <p class="w-full px-1">  {{wordData.english}} </p>
       </h2>
       
       
@@ -30,7 +30,10 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.meanings}} </p>
+        <p class="w-full px-1" 
+          v-for="(meaning, index) in  wordData.meanings"
+          :key="index"> 
+          {{ meaning }} </p>
       </h2>
       
       
@@ -42,7 +45,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.example}} </p>
+        <p class="w-full px-1">  {{wordData.example}} </p>
       </h2>
       
       
@@ -55,7 +58,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.wordclass}} </p>
+        <p class="w-full px-1"> {{wordData.wordclass}} </p>
       </h2>
       
       
@@ -67,7 +70,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.link}} </p>
+        <p class="w-full px-1">  {{wordData.link}} </p>
       </h2>
     </div>
     <div>
@@ -77,7 +80,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.image}} </p>
+        <p class="w-full px-1"> {{wordData.image}} </p>
       </h2>
       
       
@@ -89,7 +92,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1"> aaaa {{wordData.vacaburary}} </p>
+        <p class="w-full px-1">  {{wordData.vacaburary}} </p>
       </h2>
       
       
@@ -142,11 +145,11 @@ export default defineComponent({
         // No user is signed in.
       }
     });
-    const getwordData = (word: any) => {
+
       firebase
         .firestore()
-        .collection('users')
-        .doc(word.uid)
+        .collection('words')
+        .doc(root.$route.params.id) // URLからIDを取得して、そのIDのドキュメントを取得する
         .get()
         .then((doc) => {
           if (doc.exists) {
@@ -162,7 +165,6 @@ export default defineComponent({
         .catch((err) => {
           console.log('Error getting document', err)
         });
-    };
     return {
       wordData,
     }

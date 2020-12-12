@@ -37,6 +37,22 @@
         />
       </h2>
       </div>
+      <div>
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
+        収納する単語帳
+      </h3>
+      <h2
+        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
+      >
+      <select
+      v-model="wordData.wordclass"
+      class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+        >
+      <option value="admin">TOEIC</option>
+      <option value="admin">論文</option>
+      </select>
+      </h2>
+    </div>
         <hr class="my-4 sm:my-8" /> 　
         <!-- 一番したのテンプレートの文字位置 -->
         
@@ -88,10 +104,9 @@ export default defineComponent({
       firebase
         .firestore()
         .collection("words") // usersコレクションの、
-        .doc() // <ユーザーID>というドキュメントに、
-        .set(data) // dataをセットする
-        .then(() => {
-          window.location.href = "/card"; // 完了後、単語登録画面へ遷移
+        .add(data) // dataをセットする
+        .then((docRef) => {
+          window.location.href = "/words/" + docRef.id // 完了後、単語登録画面へ遷移
         });
     };
     return {
