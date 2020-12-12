@@ -5,20 +5,21 @@
             Vocaburary Check!!
         </p>
         <h1
+        v-if='wordList.length'
         class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
-        award
+        {{ wordList[0].english }}
       </h1>
         
         <div class="flex content-center mt-20 mb-20">
-         <a href="/words/0001/meaning">
-          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../../assets/image/rotation.png"></button> 
+         <a href="/words/meaning">
+          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button> 
         </a>
         </div>
         <div class="text-center mt-10">
-          <a href="words/0000/english">
+          <a href="words/english">
            <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
           </a>
-          <a href="words/0002english">
+          <a href="words/english">
            <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
           </a>
         </div>
@@ -28,11 +29,50 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent, reactive } from 'nuxt-composition-api'
 import firebase from '@/plugins/firebase.ts'
+type Word = {
+  english: string
+}
 export default defineComponent({
   layout: 'empty',
   setup(_, { root: { $store } }) {
+    // const wordState = reactive({
+    //   wordList: []
+    // })
+    const wordList = reactive<Word[]>([])
+    firebase.auth().onAuthStateChanged(function (user) { 　　//user.uidはここで取得できた:firebase.auth().onAuthStateChanged
+      if (user) {
+        getWordsData(user.uid)
+      } else {
+      }
+    })
+
+    const getWordsData = (userId: any) => {
+      console.log(userId)
+      firebase
+        .firestore()
+        .collection("words") 
+        .where("userId", "==", userId)
+        .get()
+        .then(function (querySnapshot) {
+          console.log("querySnapshot")
+          querySnapshot.forEach(function (doc) {
+          console.log(doc.data())
+          wordList.push({
+            english: doc.data().english
+          })
+          
+        })
+      })    
+        .catch((err) => {
+          console.log('Error getting document', err)
+        })
+    }
+      
+    return {
+      wordList
+    }
   }
 })
 </script>
