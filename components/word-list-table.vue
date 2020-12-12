@@ -13,7 +13,7 @@
           v-for="(word, index) in wordList"
           :key="index"
           class="border-b bg-gray-100 hover:bg-orange-100 cursor-pointer"
-          @click="wordLink()"
+          @click="wordLink(word.id)"
         >
           <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
             {{ word.english }}
@@ -81,7 +81,7 @@ export default defineComponent({
         .then(function (querySnapshot) {
           querySnapshot.forEach(function (doc) {
           wordList.push({
-            id: doc.data().id,
+            id: doc.id,
             english: doc.data().english,
             meanings: doc.data().meanings
           })
