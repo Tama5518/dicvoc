@@ -23,8 +23,6 @@
           class="border w-full px-1"
         />
       </h2>
-      
-      
     </div>
        <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
@@ -37,9 +35,7 @@
           v-model="wordData.meanings[0]"
           class="border w-full px-1"
         />
-      </h2>
-      
-      
+      </h2> 
     </div>
     <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
@@ -118,16 +114,18 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-       <select
-      v-model="wordData.wordclass"
-      class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+        <select
+        v-model='selectedVocabularyId'
+        class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
         >
-      <option value="admin">TOEIC</option>
-      <option value="admin">論文</option>
-      </select>
+        <option 
+        v-for="(vocabulary) in vocabularies"
+        :key='vocabulary.id'
+        :value="vocabulary.id">
+          {{vocabulary.vocabulary}}
+        </option>
+        </select>
       </h2>
-      
-      
     </div>
         <hr class="my-4 sm:my-8" /> 　
         <!-- 一番したのテンプレートの文字位置 -->
@@ -142,6 +140,7 @@ import {
   reactive,
   SetupContext,
   onBeforeMount,
+  ref
 } from "nuxt-composition-api";
 import PageHeading from "@/components/page-heading.vue";
 import ProfileNameIconEdit from "@/components/profile-name-icon-edit.vue";
@@ -178,10 +177,33 @@ export default defineComponent({
       if (user) {
         // User is signed in.
         userId = user.uid;
+        getVocaburariesData(userId)
       } else {
         // No user is signed in.
       }
     });
+    const vocabularies = reactive<any[]>([])
+    const selectedVocabularyId = ref('')
+    const getVocaburariesData = (userId: any) => {
+      firebase
+        .firestore()
+        .collection("vocabularies") 
+        .where("userId", "==", userId)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+          vocabularies.push({
+            id: doc.id,
+            userId: doc.data().userId,
+            vocabulary: doc.data().vocabulary,
+            wordIds: doc.data().wordIds
+          })
+        })
+      })    
+        .catch((err) => {
+          console.log('Error getting document', err)
+        })
+    }
     const setWord = (): void => {
       const data = {
         english: wordData.english,
@@ -192,20 +214,27 @@ export default defineComponent({
         music: wordData.music,
         userId: userId,
         wordclass: wordData.wordclass,
-      };
+      }
       firebase
         .firestore()
         .collection("words") // usersコレクションの、
         .add(data) // dataをセットする
         .then((docRef) => {
+          firebase
+            .firestore()
+            .collection("vocabularies")
+            .doc(selectedVocabularyId.value)
+            .update({
+              wordIds: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+            })
           window.location.href = "/words/"　+ docRef.id ; // 完了後、単語登録画面へ遷移
         });
-    };
+    }
     return {
       wordData,
-      // setIcon,
       setWord,
-      // changeName,
+      vocabularies,
+      selectedVocabularyId
     };
   },
 });
