@@ -13,7 +13,7 @@
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-              ニックネーム
+              本名
             </th>
             <td class="p-4 w-full">
               <input v-model="profile.nickname" class="border w-full px-1" />

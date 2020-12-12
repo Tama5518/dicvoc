@@ -9,7 +9,7 @@
     </div>
     <div>
       <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        NAME
+        ユーザーネーム
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
