@@ -11,7 +11,7 @@
       <h1
         class="text-5xl text-blue-900 font-bold leading-none tracking-wide mt-20 mb-20"
       >
-        表彰する
+        {{ wordData.meanings }}
       </h1>
       <div class="flex content-center mt-20 mb-20">
           <a href = "/words/0001/english">
@@ -31,9 +31,33 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent, reactive} from 'nuxt-composition-api'
 import firebase from '@/plugins/firebase.ts'
 export default defineComponent({
-  layout: 'empty'
+  layout: 'empty',
+  setup(_, { root: { $store } }) {
+    const wordData = reactive({
+      meanings: '',
+    })
+    const getWordsData = () => {
+      firebase
+        .firestore()
+        .collection("words")
+        .doc("mYfr8BGrWok9jx6yd9bs")
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            wordData.meanings = doc.data().meanings
+          }
+        })
+        .catch((err) => {
+          console.log('Error getting document', err)
+        })
+    }
+    getWordsData()
+    return {
+      wordData
+    }
+  }
 })
 </script>
