@@ -13,7 +13,7 @@
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
           <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        英語
+        English
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
@@ -29,7 +29,7 @@
     </div>
        <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        日本語の意味①
+        Meaning
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
