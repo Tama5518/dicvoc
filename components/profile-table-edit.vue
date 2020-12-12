@@ -47,7 +47,15 @@
             英語を学ぶ動機
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.motivation" class="border w-full px-1" />
+             <select
+              v-model="profile.birthplace"
+              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+            >
+              <option value="work">学校や仕事で使用するため</option>
+              <option value="culture">海外旅行で使用するため</option>
+            　<option value="study">英語を勉強するのが好きだから</option>
+              <option value="money">収入が上がるから</option>
+            </select> 
             </td>
           </tr>
           

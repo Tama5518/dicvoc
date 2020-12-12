@@ -4,7 +4,7 @@
       単語登録
       <button
         class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
-        @click="setProfile"
+        @click="setWord"
       >
         新規追加
       </button>
@@ -83,8 +83,8 @@ export default defineComponent({
     const setWord = (): void => {
       const data = {
         english: wordData.english,
-        meanings: wordData.meanings,};
-    
+        meanings: wordData.meanings
+      }
       firebase
         .firestore()
         .collection("words") // usersコレクションの、
