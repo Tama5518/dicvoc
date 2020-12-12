@@ -18,10 +18,10 @@
         />
         <hr class="my-4 sm:my-8">
         <p class="leading-relaxed whitespace-pre-line">
-          {{ userData.comment }}
+          {{ wordData.comment }}
         </p>
       </div>
-      <ProfileTable class="mt-8 lg:w-1/2 w-full" :profile="userData.profile" />
+      <ProfileTable class="mt-8 lg:w-1/2 w-full" :profile="wordData.profile" />
     </div>
   </div>
 </template>
@@ -40,13 +40,16 @@ type User = {
   iconUrl: string
   comment: string
   profile: {
-    belongs: string
-    nickname: string
-    birthplace: string
-    birthday: string
-    bloodType: string
-    sign: string
-    hobby: string
+    english: string;
+    japanese1: string;
+    japanese2: string;
+    japanese3: string;
+    example: string;
+    wordclass: string;
+    link: string;
+    image: string;
+    music: string;
+  
   }
 }
 
@@ -57,7 +60,7 @@ export default defineComponent({
     ProfileNameIcon,
   },
   setup(_, { root }: SetupContext) {
-    const userData = reactive<User>({
+    const wordData = reactive<User>({
       id: '',
       name: '',
       email: '',
@@ -65,38 +68,41 @@ export default defineComponent({
       iconUrl: '',
       comment: '',
       profile: {
-        belongs: '',
-        nickname: '',
-        birthplace: '',
-        birthday: '',
-        bloodType: '',
-        sign: '',
-        hobby: '',
+        english: '',
+        japanese1: '',
+        japanese2: '',
+        japanese3: '',
+        example: '',
+        wordclass: '',
+        link: '',
+        image: '',
+        music: '',
+
       },
     })
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
-        userData.id = user.uid
+        wordData.id = word.uid
         userData.email = user.email
-        getUserData(user)
+        getwordData(word)
       } else {
         // No user is signed in.
       }
     })
-    const getUserData = (user) => {
+    const getwordData = (word: any) => {
       firebase
         .firestore()
         .collection('users')
-        .doc(user.uid)
+        .doc(word.uid)
         .get()
         .then((doc) => {
           if (doc.exists) {
-            userData.name = doc.data().name
-            userData.role = doc.data().role
-            userData.iconUrl = doc.data().iconUrl
-            userData.profile = doc.data().profile
-            userData.comment = doc.data().comment
+            wordData.name = doc.data().name
+            wordData.role = doc.data().role
+            wordData.iconUrl = doc.data().iconUrl
+            wordData.profile = doc.data().profile
+            wordData.comment = doc.data().comment
           }
         })
         .catch((err) => {
@@ -104,7 +110,7 @@ export default defineComponent({
         })
     }
     return {
-      userData,
+      wordData,
     }
   }
 })

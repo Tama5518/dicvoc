@@ -13,13 +13,13 @@
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
           <div>
       <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        英語の意味
+        英語
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.english"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -35,7 +35,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.japanese1"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -51,7 +51,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.japanese2"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -67,7 +67,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.japanese3"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -83,7 +83,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.example"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -99,11 +99,18 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <input
-          v-model="userData.name"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
+        <select
+              v-model="wordData.wordclass"
+              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+            >
+              <option value="noun">名詞</option>
+              <option value="verb">動詞</option>
+              <option value="adjective">形容詞</option>
+              <option value="adverb">副詞</option>
+              <option value="pronoun">代名詞</option>
+              <option value="preposition">前置詞</option>
+              <option value="conjunction">接続詞</option>
+            </select>
       </h2>
       
       
@@ -116,7 +123,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.link"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -132,7 +139,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.image"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -148,7 +155,7 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <input
-          v-model="userData.name"
+          v-model="wordData.music"
           class="border w-full px-1"
           @input="userNameEmitter()"
         />
@@ -183,13 +190,15 @@ type User = {
   iconUrl: string;
   comment: string;
   profile: {
-    belongs: string;
-    nickname: string;
-    birthplace: string;
-    birthday: string;
-    bloodType: string;
-    sign: string;
-    hobby: string;
+    english: string;
+    japanese1: string;
+    japanese2: string;
+    japanese3: string;
+    example: string;
+    wordclass: string;
+    link: string;
+    image: string;
+    music: string;
   };
 };
 export default defineComponent({
@@ -199,7 +208,7 @@ export default defineComponent({
     ProfileNameIconEdit,
   },
   setup(_, { root }: SetupContext) {
-    const userData = reactive<User>({
+    const wordData = reactive<User>({
       id: "",
       name: "",
       email: "",
@@ -207,82 +216,83 @@ export default defineComponent({
       iconUrl: "",
       comment: "",
       profile: {
-        belongs: "",
-        nickname: "",
-        birthplace: "",
-        birthday: "",
-        bloodType: "",
-        sign: "",
-        hobby: "",
+        english: "",
+        japanese1: "",
+        japanese2: "",
+        japanese3: "",
+        example: "",
+        wordclass: "",
+        link: "",
+        image: "",
+        music: "",
       },
     });
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
+    firebase.auth().onAuthStateChanged(function (word) {
+      if (word) {
         // User is signed in.
-        userData.id = user.uid;
-        userData.email = user.email;
-        getUserData(user);
+        wordData.id = word.uid;
+        getwordData(word);
       } else {
         // No user is signed in.
       }
     });
-    const getUserData = (user) => {
+    const getwordData = (word: any) => {
       firebase
         .firestore()
-        .collection("users")
-        .doc(user.uid)
+        .collection("words")
+        .doc(word.uid)
         .get()
         .then((doc) => {
           if (doc.exists) {
-            userData.name = doc.data().name;
-            userData.role = doc.data().role;
-            userData.iconUrl = doc.data().iconUrl;
-            userData.profile = doc.data().profile;
-            userData.comment = doc.data().comment;
+            wordData.name = doc.data().name;
+            wordData.role = doc.data().role;
+            wordData.iconUrl = doc.data().iconUrl;
+            wordData.profile = doc.data().profile;
+            wordData.comment = doc.data().comment;
           }
         })
         .catch((err) => {
           console.log("Error getting user document", err);
         });
     };
-    const changeName = (name) => {
-      userData.name = name;
+    const changeName = (name: string) => {
+      wordData.name = name;
     };
     const setIcon = (file: File): void => {
       // ストレージのルートへの参照を取得
       const storageRef = firebase.storage().ref();
       // プロフィール画像アップロード先への参照を取得
       const fileRef = storageRef.child(
-        "images/profile/" + userData.id + "/" + file.name
+        "images/profile/" + wordData.id + "/" + file.name
       );
       // プロフィール画像をストレージにアップロード
       fileRef.put(file).then(function (snapshot) {
         // ユーザーデータのURLを更新する
         snapshot.ref.getDownloadURL().then((url) => {
-          userData.iconUrl = url;
+          wordData.iconUrl = url;
         });
       });
     };
     const setProfile = (): void => {
       const data = {
-        name: userData.name,
-        email: userData.email,
-        role: userData.role,
-        iconUrl: userData.iconUrl,
-        comment: userData.comment,
-        profile: userData.profile,
+        name: wordData.name,
+        email: wordData.email,
+        role: wordData.role,
+        iconUrl: wordData.iconUrl,
+        comment: wordData.comment,
+        profile: wordData.profile,
       };
       firebase
         .firestore()
-        .collection("users") // usersコレクションの、
-        .doc(userData.id) // <ユーザーID>というドキュメントに、
+        .collection("words") // usersコレクションの、
+        .doc(wordData.id) // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
           window.location.href = "/profile"; // 完了後、プロフィール画面へ遷移
         });
     };
     return {
-      userData,
+      wordData,
       setIcon,
       setProfile,
       changeName,

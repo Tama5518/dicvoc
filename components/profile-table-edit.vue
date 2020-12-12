@@ -32,7 +32,17 @@
             TOIEC点数（点）
             </th>
             <td class="p-4 w-full">
-              <input v-model="profile.birthday" class="border w-full px-1" />
+              <select
+              v-model="wordData.wordclass"
+              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+            >
+              <option value="-400">0~400点</option>
+              <option value="401-600">401~600点</option>
+              <option value="601-700">601~700点</option>
+              <option value="701-800">701~800点</option>
+              <option value="801-900">801~900点</option>
+              <option value="901-990">901~990点</option>
+            </select>
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
