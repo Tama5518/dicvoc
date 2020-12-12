@@ -118,10 +118,13 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <input
-          v-model="wordData.music"
-          class="border w-full px-1"
-        />
+       <select
+      v-model="wordData.wordclass"
+      class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+        >
+      <option value="admin">TOEIC</option>
+      <option value="admin">論文</option>
+      </select>
       </h2>
       
       
@@ -193,10 +196,9 @@ export default defineComponent({
       firebase
         .firestore()
         .collection("words") // usersコレクションの、
-        .doc() // <ユーザーID>というドキュメントに、
-        .set(data) // dataをセットする
-        .then(() => {
-          window.location.href = "/card"; // 完了後、単語登録画面へ遷移
+        .add(data) // dataをセットする
+        .then((docRef) => {
+          window.location.href = "/words/"　+ docRef.id ; // 完了後、単語登録画面へ遷移
         });
     };
     return {
