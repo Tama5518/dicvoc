@@ -12,7 +12,7 @@
     <div class="lg:w-11/12 mx-auto flex flex-wrap">
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
           <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         英語
       </h3>
       <h2
@@ -28,7 +28,7 @@
       
     </div>
        <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         日本語の意味①
       </h3>
       <h2
@@ -40,128 +40,6 @@
           @input="userNameEmitter()"
         />
       </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        日本語の意味②
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.japanese2"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        日本語の意味③
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.japanese3"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        例文
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.example"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        品詞
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <select
-              v-model="wordData.wordclass"
-              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
-            >
-              <option value="noun">名詞</option>
-              <option value="verb">動詞</option>
-              <option value="adjective">形容詞</option>
-              <option value="adverb">副詞</option>
-              <option value="pronoun">代名詞</option>
-              <option value="preposition">前置詞</option>
-              <option value="conjunction">接続詞</option>
-            </select>
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        リンクのURL
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.link"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        写真
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.image"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm title-font text-gray-500 tracking-widest">
-        音楽
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.music"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
     </div>
         <hr class="my-4 sm:my-8" /> 　
         <!-- 一番したのテンプレートの文字位置 -->
@@ -255,7 +133,7 @@ export default defineComponent({
           console.log("Error getting user document", err);
         });
     };
-    const changeName = (name: string) => {
+    const changeName = (name) => {
       wordData.name = name;
     };
     const setIcon = (file: File): void => {

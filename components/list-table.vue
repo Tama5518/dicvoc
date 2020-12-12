@@ -3,7 +3,7 @@
     <table class="w-full text-md bg-white">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
-          <th class="text-left p-3 px-5">氏名</th>
+          <th class="text-left p-3 px-5">ユーザーネーム</th>
           <th class="text-left p-3 px-5">Email</th>
           <th class="text-left p-3 px-5">職種</th>
           <th></th>
