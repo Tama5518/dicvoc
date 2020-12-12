@@ -1,13 +1,8 @@
 <template>
   <div class="container mx-auto">
-    <PageHeading>カード詳細</PageHeading>
+    <PageHeading>単語帳詳細</PageHeading>
     <div class="lg:w-11/12 mx-auto flex flex-wrap">
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
-        <ProfileEnglishIcon
-          :illustration="wordsData.illustration"
-          :english="wordsData.english"
-          :number="wordsData.number"
-        />
         <hr class="my-4 sm:my-8" />
         <p class="leading-relaxed whitespace-pre-line">
           {{ wordsData.meaning }}
@@ -20,54 +15,62 @@
 <script lang="ts">
 import { defineComponent, reactive, SetupContext } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'
-import ProfileEnglishIcon from '@/components/profile-english-icon.vue'
 import ProfileTable from '@/components/profile-element.vue'
 import wordslistJson from '@/mock/wordslist.json'
 import firebase from '@/plugins/firebase.ts'
-
 type Word = {
   id: string
-  number: string
   english: string
-  pronounciation: string
-  part: string
-  illustration: string
-  meaning: string
+  meanings: string
   more: {
-    synonims: string
-    anti: string
-    inflectedform: string
-    etymology: string
+    wordclass: string
+    example: string
+    image: string
+    music: string
+    link: string
   }
 }
 
 export default defineComponent({
   components: {
     PageHeading,
-    ProfileTable,
-    ProfileNameIcon,
+    ProfileTable
   },
   setup(_, { root }: SetupContext) {
-    const wordsData = reactive<Word>({
-      id: '',
-      number: '',
-      english: '',
-      pronounciation: '',
-      part: '',
-      illustration: '',
-      meaning: '',
-      more: {
-        synonims: '',
-        anti: '',
-        inflectedform: '',
-        etymology: ''
-      },
+    const vocaburaryWordsData = reactive<Word[]>([])
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        getWordsData(user.uid)
+      } else {
+      }
     })
-      .catch((err) => {
-        console.log('Error getting document', err)
-      })
+
+    const
+
+    // const getWordsData = (userId: any) => {
+    //   firebase
+    //     .firestore()
+    //     .collection("vocaburaries") 
+    //     .where("userId", "==", userId)
+    //     .get()
+    //     .then(function (querySnapshot) {
+    //       querySnapshot.forEach(function (doc) {
+    //       vocaburaryWordsData.push({
+    //         id: doc.id,
+    //         english: doc.data().english,
+    //         meanings: doc.data().meanings
+    //       })
+          
+    //     })
+    //   })    
+    //     .catch((err) => {
+    //       console.log('Error getting document', err)
+    //     })
+    // }
+    // })
+    //   })
     return {
-      wordsData,
+      // wordsData,
     }
   },
 })
