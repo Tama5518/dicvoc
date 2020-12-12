@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PageHeading>Toeic単語一覧</PageHeading>
+    <PageHeading>All Vocaburaries</PageHeading>
     <ListTable class="my-4 lg:w-11/12 mx-auto" />
     <hr class="my-12" />
   </div>
@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'
-import ListTable from '@/components/word-list-table.vue'
+import ListTable from '@/components/vocaburary-table.vue'
 
 export default defineComponent({
   components: {

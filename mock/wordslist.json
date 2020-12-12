@@ -1,0 +1,84 @@
+{
+  "wordslistData": [
+    {
+      "id": "0001",
+      "number": "1",
+      "english":"award",
+      "pronounciation": "award",
+      "part": "動",
+      "illustration": "https://images.unsplash.com/photo-1577409873799-29f8be1311dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80",
+      "meaning": "(賞与などを)与える",
+      "example":"His teacher awarded a prize to the boy(先生はその少年に賞を与えた)",
+      "more": {
+        "synonims": "present, grant",
+        "anti": "reward",
+        "inflectedform": "award-awarded-awareded",
+        "etymology": "古期フランス語「制定する」の意"
+      }
+    },
+    {
+      "id": "0002",
+      "number": "2",
+      "english":"award",
+      "pronounciation": "award",
+      "part": "動",
+      "illustration": "https://images.unsplash.com/photo-1577409873799-29f8be1311dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80",
+      "meaning": "(賞与などを)与える",
+      "example":"His teacher awarded a prize to the boy(先生はその少年に賞を与えた)",
+      "profile": {
+        "synonims": "present, grant",
+        "anti": "reward",
+        "inflected-form": "award-awarded-awareded",
+        "etymology": "古期フランス語「制定する」の意"
+      }
+    },
+    {
+      "id": "0003",
+      "number": "3",
+      "english":"award",
+      "pronounciation": "award",
+      "part": "動",
+      "illustration": "https://images.unsplash.com/photo-1577409873799-29f8be1311dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80",
+      "meaning": "(賞与などを)与える",
+      "example":"His teacher awarded a prize to the boy(先生はその少年に賞を与えた)",
+      "more": {
+        "synonims": "present, grant",
+        "anti": "reward",
+        "inflected-form": "award-awarded-awareded",
+        "etymology": "古期フランス語「制定する」の意"
+      }
+    },
+    {
+      "id": "0004",
+      "number": "4",
+      "english":"award",
+      "pronounciation": "award",
+      "part": "動",
+      "illustration": "https://images.unsplash.com/photo-1577409873799-29f8be1311dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80",
+      "meaning": "(賞与などを)与える",
+      "example":"His teacher awarded a prize to the boy(先生はその少年に賞を与えた)",
+      "more": {
+        "synonims": "present, grant",
+        "anti": "reward",
+        "inflected-form": "award-awarded-awareded",
+        "etymology": "古期フランス語「制定する」の意"
+      }
+    },
+    {
+      "id": "0005",
+      "number": "5",
+      "english":"award",
+      "pronounciation": "award",
+      "part": "動",
+      "illustration": "https://images.unsplash.com/photo-1577409873799-29f8be1311dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80",
+      "meaning": "(賞与などを)与える",
+      "example":"His teacher awarded a prize to the boy(先生はその少年に賞を与えた)",
+      "more": {
+        "synonims": "present, grant",
+        "anti": "reward",
+        "inflected-form": "award-awarded-awareded",
+        "etymology": "古期フランス語「制定する」の意"
+      }
+    }
+  ]
+}
