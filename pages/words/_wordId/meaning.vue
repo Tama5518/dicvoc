@@ -33,6 +33,7 @@
 <script lang="ts">
 import { defineComponent } from 'nuxt-composition-api'
 import SvgImage from '@/components/svg-image.vue'
+import firebase from '@/plugins/firebase.ts'
 export default defineComponent({
   layout: 'empty',
   components: {

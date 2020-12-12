@@ -1,25 +1,24 @@
 <template>
   <div class="bg-white flex flex-col font-sans jusitfy-between items-center py-12">
-    <div class="flex flex-col items-center text-center">
+    <div class="flex flex-col items-center text-center ">
         <p class="flex flex-col items-center text-center font-bold">
             Vocaburary Check!!
         </p>
         <h1
-        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 sm:w-2/5 flex flex-col items-center text-center mt-20 mb-20"
-      >
+        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
         award
       </h1>
         
         <div class="flex content-center mt-20 mb-20">
-          <a href = "/words/0001/meaning">
-           <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../../assets/image/rotation.png"></button>
-           </a>
+         <a href="/words/0001/meaning">
+          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../../assets/image/rotation.png"></button> 
+        </a>
         </div>
         <div class="text-center mt-10">
-          <a href = "/words/0000/english">
+          <a href="words/0000/english">
            <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
           </a>
-          <a href = "/words/0002/english">
+          <a href="words/0002english">
            <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
           </a>
         </div>
@@ -34,16 +33,6 @@ import firebase from '@/plugins/firebase.ts'
 export default defineComponent({
   layout: 'empty',
   setup(_, { root: { $store } }) {
-    const isSignedIn = (): boolean => {
-      return $store.state.signedIn
-    }    
-    const signOut = (): void => {
-      firebase.auth().signOut()
-    }
-    return {
-      isSignedIn,
-      signOut
-    }
   }
 })
 </script>
