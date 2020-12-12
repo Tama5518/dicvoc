@@ -28,7 +28,7 @@
           <td class="py-3 px-5">
             <div class="flex justify-end items-center">
               <a
-                :href="'/vocaburary/' + word.id"
+                :href="'/vocaburary/0001/' + word.id"
                 class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline flex items-center"
               >
                 <span
@@ -61,8 +61,9 @@ import { defineComponent, reactive } from 'nuxt-composition-api'
 import wordslistJson from '@/mock/wordslist.json'
 import firebase from '@/plugins/firebase.ts'
 //型エイリアス//
-type Word = {  
+type Word = {
   id: string
+  number: string
   english: string
   pronounciation: string
   part: string
@@ -82,7 +83,7 @@ export default defineComponent({
     const wordList = reactive(wordslistJson.wordslistData)
     console.log(wordList)
     const wordLink = (wordId: string): void => {
-      window.location.href = '/vocaburary/' + wordId
+      window.location.href = '/vocaburary/0001' + wordId
     }
     return {
       wordList,

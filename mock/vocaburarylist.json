@@ -1,0 +1,24 @@
+{
+  "vocaburarylistData": [
+    {
+      "id": "00001",
+      "nameofvocaburary": "Toeic"
+    },
+    {
+      "id": "00002",
+      "nameofvocaburary": "Toeful"
+    },
+    {
+      "id": "00003",
+      "nameofvocaburary": "英検"
+    },
+    {
+      "id": "00004",
+      "nameofvocaburary": "論文"
+    },
+    {
+      "id": "00005",
+      "nameofvocaburary": "洋楽"
+    }
+  ]
+}
