@@ -7,7 +7,7 @@
         <h1
         v-if='wordList.length'
         class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
-        {{ wordList[0].english }}
+        {{ wordList[wordIndex].english }}
       </h1>
         
         <div class="flex content-center mt-20 mb-20">
@@ -16,12 +16,12 @@
         </a>
         </div>
         <div class="text-center mt-10">
-          <a href="words/english">
-           <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
-          </a>
-          <a href="words/english">
-           <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
-          </a>
+           <button 
+            @click="changePreviousDisplayWord()"
+            class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
+           <button 
+            @click="changeNextDisplayWord()"
+            class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
         </div>
         
     </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, reactive } from 'nuxt-composition-api'
+import { defineComponent, reactive, ref } from 'nuxt-composition-api'
 import firebase from '@/plugins/firebase.ts'
 type Word = {
   english: string
@@ -41,6 +41,7 @@ export default defineComponent({
     //   wordList: []
     // })
     const wordList = reactive<Word[]>([])
+    const wordIndex = ref(0)
     firebase.auth().onAuthStateChanged(function (user) { 　　//user.uidはここで取得できた:firebase.auth().onAuthStateChanged
       if (user) {
         getWordsData(user.uid)
@@ -69,9 +70,20 @@ export default defineComponent({
           console.log('Error getting document', err)
         })
     }
+    const changePreviousDisplayWord = (): void =>{
+      wordIndex.value = wordIndex.value - 1
+      console.log("changePreviousDisplayWord")
+    }
+    const changeNextDisplayWord = (): void => {
+      wordIndex.value = wordIndex.value + 1
+      console.log("changeNextDisplayWord")
+    }
       
     return {
-      wordList
+      wordList,
+      wordIndex,
+      changeNextDisplayWord,
+      changePreviousDisplayWord
     }
   }
 })
