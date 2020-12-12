@@ -4,16 +4,21 @@
         <p class="flex flex-col items-center text-center font-bold">
             Vocaburary Check!!
         </p>
-        <h1
-        v-if='wordList.length'
+      <h1
+        v-if='wordList.length && displayMode == "english"'
         class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
         {{ wordList[wordIndex].english }}
       </h1>
+      <h1
+        v-if='wordList.length && displayMode == "meaning"'
+        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
+        {{ wordList[wordIndex].meanings }}
+      </h1>
         
         <div class="flex content-center mt-20 mb-20">
-         <a href="/words/meaning">
-          <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button> 
-        </a>
+          <button 
+            @click="chanegeToAnother()"
+            class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button> 
         </div>
         <div class="text-center mt-10">
            <button 
@@ -33,16 +38,14 @@ import { defineComponent, reactive, ref } from 'nuxt-composition-api'
 import firebase from '@/plugins/firebase.ts'
 type Word = {
   english: string
+  meanings: string
 }
 export default defineComponent({
   layout: 'empty',
   setup(_, { root: { $store } }) {
-    // const wordState = reactive({
-    //   wordList: []
-    // })
     const wordList = reactive<Word[]>([])
     const wordIndex = ref(0)
-    firebase.auth().onAuthStateChanged(function (user) { 　　//user.uidはここで取得できた:firebase.auth().onAuthStateChanged
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         getWordsData(user.uid)
       } else {
@@ -57,11 +60,10 @@ export default defineComponent({
         .where("userId", "==", userId)
         .get()
         .then(function (querySnapshot) {
-          console.log("querySnapshot")
           querySnapshot.forEach(function (doc) {
-          console.log(doc.data())
           wordList.push({
-            english: doc.data().english
+            english: doc.data().english,
+            meanings: doc.data().meanings
           })
           
         })
@@ -71,19 +73,34 @@ export default defineComponent({
         })
     }
     const changePreviousDisplayWord = (): void =>{
+      if (wordIndex.value > 0){
       wordIndex.value = wordIndex.value - 1
-      console.log("changePreviousDisplayWord")
+      }
     }
     const changeNextDisplayWord = (): void => {
-      wordIndex.value = wordIndex.value + 1
-      console.log("changeNextDisplayWord")
+      if (wordIndex.value != wordList.length - 1 ){
+      wordIndex.value = wordIndex.value + 1}
+      else(window.location.href = "/words")
+    }
+    const displayMode = ref("english")
+    const chanegeToAnother = () : void => {
+      console.log('chanegeToAnother', wordList[wordIndex.value].meanings)
+      if (displayMode.value == "meaning"){
+        displayMode.value = "english"
+      }
+      else{
+        displayMode.value = "meaning"
+      }
+
     }
       
     return {
       wordList,
       wordIndex,
       changeNextDisplayWord,
-      changePreviousDisplayWord
+      changePreviousDisplayWord,
+      displayMode,
+      chanegeToAnother
     }
   }
 })
