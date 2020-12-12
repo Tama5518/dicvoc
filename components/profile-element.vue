@@ -5,74 +5,64 @@
         <tbody>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-              職種
+              発音
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.belongs" class="border w-full px-1" />
+            <td class="p-4">
+              {{ pronounciation }}
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-              ニックネーム
+              品詞
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.nickname" class="border w-full px-1" />
+            <td class="p-4">
+              {{ profile.nickname }}
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
               英語学習期間（年）
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.birthplace" class="border w-full px-1" />
+            <td class="p-4">
+              {{ profile.birthplace }}
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-            TOIEC点数（点）
+              TOIEC点数（点）
             </th>
-            <td class="p-4 w-full">
-              <select
-              v-model="wordData.wordclass"
-              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
-            >
-              <option value="-400">0~400点</option>
-              <option value="401-600">401~600点</option>
-              <option value="601-700">601~700点</option>
-              <option value="701-800">701~800点</option>
-              <option value="801-900">801~900点</option>
-              <option value="901-990">901~990点</option>
-            </select>
+            <td class="p-4">
+              {{ profile.birthday }}
             </td>
           </tr>
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
-            英語を学ぶ動機
+              英語を学ぶ動機
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.bloodType" class="border w-full px-1" />
+            <td class="p-4">
+              {{ profile.bloodType }}
             </td>
           </tr>
-          
           <tr class="border-b bg-gray-100">
             <th class="p-4 whitespace-no-wrap text-left">
               趣味
             </th>
-            <td class="p-4 w-full">
-              <input v-model="profile.hobby" class="border w-full px-1" />
+            <td class="p-4">
+              {{ profile.sign }}
             </td>
           </tr>
+          
         </tbody>
       </table>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, SetupContext } from 'nuxt-composition-api'
+import { defineComponent, reactive, SetupContext } from 'nuxt-composition-api'
 export default defineComponent({
   name: 'ProfileTable',
   props: {
-    profile: {},
+    more: {},
   },
   setup(props, { root }: SetupContext) {
     return {

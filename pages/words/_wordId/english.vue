@@ -5,8 +5,7 @@
             Vocaburary Check!!
         </p>
         <h1
-        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20"
-      >
+        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
         award
       </h1>
         

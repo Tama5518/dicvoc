@@ -7,7 +7,7 @@
         <p class="leading-none">
           <a
             href="/"
-            class="text-xl sm:text-2xl font-bold uppercase text-blue-900 hover:text-blue-800"
+            class="text-xl sm:text-2xl font-bold text-blue-900 hover:text-blue-800"
           >
             DicVoc
           </a>
@@ -22,7 +22,7 @@
           </a>
           <a
             href="/card"
-            class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
+            class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold uppercase"
           >
             card
           </a>
