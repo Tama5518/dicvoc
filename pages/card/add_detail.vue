@@ -4,7 +4,7 @@
       単語登録
       <button
         class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
-        @click="setProfile"
+        @click="setWord"
       >
         新規追加
       </button>
@@ -21,7 +21,6 @@
         <input
           v-model="wordData.english"
           class="border w-full px-1"
-          @input="userNameEmitter()"
         />
       </h2>
       
@@ -29,7 +28,7 @@
     </div>
        <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        日本語の意味①
+        meanings
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
@@ -37,39 +36,6 @@
         <input
           v-model="wordData.japanese1"
           class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        日本語の意味②
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.japanese2"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
-        />
-      </h2>
-      
-      
-    </div>
-    <div>
-      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        日本語の意味③
-      </h3>
-      <h2
-        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
-      >
-        <input
-          v-model="wordData.japanese3"
-          class="border w-full px-1"
-          @input="userNameEmitter()"
         />
       </h2>
       
@@ -85,7 +51,7 @@
         <input
           v-model="wordData.example"
           class="border w-full px-1"
-          @input="userNameEmitter()"
+          
         />
       </h2>
       
@@ -125,7 +91,6 @@
         <input
           v-model="wordData.link"
           class="border w-full px-1"
-          @input="userNameEmitter()"
         />
       </h2>
       
@@ -141,7 +106,6 @@
         <input
           v-model="wordData.image"
           class="border w-full px-1"
-          @input="userNameEmitter()"
         />
       </h2>
       
@@ -157,7 +121,6 @@
         <input
           v-model="wordData.music"
           class="border w-full px-1"
-          @input="userNameEmitter()"
         />
       </h2>
       
@@ -182,24 +145,14 @@ import ProfileNameIconEdit from "@/components/profile-name-icon-edit.vue";
 import ProfileTableEdit from "@/components/profile-table-edit.vue";
 import firebase from "@/plugins/firebase.ts";
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  iconUrl: string;
-  comment: string;
-  profile: {
+type Word = {
     english: string;
-    japanese1: string;
-    japanese2: string;
-    japanese3: string;
+    meanings:[];
     example: string;
     wordclass: string;
     link: string;
     image: string;
     music: string;
-  };
 };
 export default defineComponent({
   components: {
@@ -208,84 +161,39 @@ export default defineComponent({
     ProfileNameIconEdit,
   },
   setup(_, { root }: SetupContext) {
-    const wordData = reactive<User>({
-      id: "",
-      name: "",
-      email: "",
-      role: "",
-      iconUrl: "",
-      comment: "",
-      profile: {
+    const wordData = reactive<Word>({
         english: "",
-        japanese1: "",
-        japanese2: "",
-        japanese3: "",
+        meanings: [],
         example: "",
         wordclass: "",
         link: "",
         image: "",
         music: "",
-      },
     });
-    firebase.auth().onAuthStateChanged(function (word) {
-      if (word) {
+    let userId = ""
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
         // User is signed in.
-        wordData.id = word.uid;
-        getwordData(word);
+        userId = user.uid;
       } else {
         // No user is signed in.
       }
     });
-    const getwordData = (word: any) => {
-      firebase
-        .firestore()
-        .collection("words")
-        .doc(word.uid)
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            wordData.name = doc.data().name;
-            wordData.role = doc.data().role;
-            wordData.iconUrl = doc.data().iconUrl;
-            wordData.profile = doc.data().profile;
-            wordData.comment = doc.data().comment;
-          }
-        })
-        .catch((err) => {
-          console.log("Error getting user document", err);
-        });
-    };
-    const changeName = (name) => {
-      wordData.name = name;
-    };
-    const setIcon = (file: File): void => {
-      // ストレージのルートへの参照を取得
-      const storageRef = firebase.storage().ref();
-      // プロフィール画像アップロード先への参照を取得
-      const fileRef = storageRef.child(
-        "images/profile/" + wordData.id + "/" + file.name
-      );
-      // プロフィール画像をストレージにアップロード
-      fileRef.put(file).then(function (snapshot) {
-        // ユーザーデータのURLを更新する
-        snapshot.ref.getDownloadURL().then((url) => {
-          wordData.iconUrl = url;
-        });
-      });
-    };
-    const setProfile = (): void => {
+    const setWord = (): void => {
       const data = {
-        name: wordData.name,
-        email: wordData.email,
-        role: wordData.role,
-        iconUrl: wordData.iconUrl,
-        comment: wordData.comment,
-        profile: wordData.profile,
+        english: wordData.english,
+        example: wordData.example,
+        image: wordData.image,
+        link: wordData.link,
+        meanings: wordData.meanings,
+        music: wordData.music,
+        userId: userId,
+        wordclass: wordData.wordclass,
       };
       firebase
         .firestore()
         .collection("words") // usersコレクションの、
-        .doc(wordData.id) // <ユーザーID>というドキュメントに、
+        .doc() // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
           window.location.href = "/profile"; // 完了後、プロフィール画面へ遷移
@@ -293,9 +201,9 @@ export default defineComponent({
     };
     return {
       wordData,
-      setIcon,
-      setProfile,
-      changeName,
+      // setIcon,
+      setWord,
+      // changeName,
     };
   },
 });
