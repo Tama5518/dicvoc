@@ -41,15 +41,12 @@ type User = {
   comment: string
   profile: {
     english: string;
-    japanese1: string;
-    japanese2: string;
-    japanese3: string;
+    meanings: string;
     example: string;
     wordclass: string;
     link: string;
     image: string;
-    music: string;
-  
+    vacaburary: string;
   }
 }
 
@@ -84,7 +81,7 @@ export default defineComponent({
       if (user) {
         // User is signed in.
         wordData.id = word.uid
-        userData.email = user.email
+        Data.email = user.email
         getwordData(word)
       } else {
         // No user is signed in.

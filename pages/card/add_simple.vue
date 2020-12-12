@@ -91,7 +91,7 @@ export default defineComponent({
         .doc() // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
-          window.location.href = "/profile"; // 完了後、プロフィール画面へ遷移
+          window.location.href = "/card"; // 完了後、単語登録画面へ遷移
         });
     };
     return {

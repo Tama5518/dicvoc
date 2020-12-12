@@ -113,7 +113,7 @@
     </div>
     <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        音楽
+        収納する単語帳
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
@@ -196,7 +196,7 @@ export default defineComponent({
         .doc() // <ユーザーID>というドキュメントに、
         .set(data) // dataをセットする
         .then(() => {
-          window.location.href = "/profile"; // 完了後、プロフィール画面へ遷移
+          window.location.href = "/card"; // 完了後、単語登録画面へ遷移
         });
     };
     return {
