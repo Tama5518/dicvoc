@@ -8,14 +8,17 @@
     <p class="flex flex-col items-center text-center font-bold">
             Vocaburary Check!!
         </p>
-      <h1
-        class="text-5xl text-blue-900 font-bold leading-none tracking-wide mt-20 mb-20"
-      >
-        {{ wordData.meanings }}
-      </h1>
+      <div  v-for="(meanings, index) in wordData"
+            :key="index">
+        <h1
+          class="text-5xl text-blue-900 font-bold leading-none tracking-wide mt-20 mb-20"
+        >
+          {{ wordData.meanings }}
+        </h1>
+      </div>
       <div class="flex content-center mt-20 mb-20">
           <a href = "/words/0001/english">
-           <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../../assets/image/rotation.png"></button>
+           <button class="bg-gray-500 font-bold py-4 px-4 rounded-full"><img class="h-16 w-16" src="../../assets/image/rotation.png"></button>
           </a>
         </div>
       <div class="text-center mt-10">
