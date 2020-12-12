@@ -5,13 +5,12 @@ import 'firebase/storage'
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    apiKey: "AIzaSyAZk4BIcu84kIK72SEkHSnafuZTP-7TCS8",
-    authDomain: "titech-2020-imahashi.firebaseapp.com",
-    databaseURL: "https://titech-2020-imahashi.firebaseio.com",
-    projectId: "titech-2020-imahashi",
-    storageBucket: "titech-2020-imahashi.appspot.com",
-    messagingSenderId: "454271650",
-    appId: "1:454271650:web:2252a5355e5f24d6052dfb"
+    apiKey: "AIzaSyBigoXGLfoxU9lQR8fL2XSpdY00wt39xMw",
+    authDomain: "dicvoc.firebaseapp.com",
+    projectId: "dicvoc",
+    storageBucket: "dicvoc.appspot.com",
+    messagingSenderId: "864694535850",
+    appId: "1:864694535850:web:442c7265f53da51df772d3"
   })
 }
 
