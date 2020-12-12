@@ -9,12 +9,13 @@
 import { defineComponent } from 'nuxt-composition-api'
 import PageHeading from '@/components/page-heading.vue'
 import ListTable from '@/components/vocaburary-table.vue'
+import firebase from "@/plugins/firebase.ts";
 
 export default defineComponent({
   components: {
     PageHeading,
     ListTable,
-  },
+  }
 })
 </script>
 <style></style>

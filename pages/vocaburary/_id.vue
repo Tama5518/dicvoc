@@ -45,7 +45,7 @@ export default defineComponent({
       }
     })
 
-    const
+    
 
     // const getWordsData = (userId: any) => {
     //   firebase
