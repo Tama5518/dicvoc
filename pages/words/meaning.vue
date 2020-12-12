@@ -25,41 +25,67 @@
           <a href = "/words/0000/meaning">
            <button class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
           </a>
-          <a href = "/words/0002/meaning">
+        
            <button class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
-          </a>
+         
         </div>
     </div>
     
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive} from 'nuxt-composition-api'
+import { defineComponent, reactive, ref} from 'nuxt-composition-api'
 import firebase from '@/plugins/firebase.ts'
+type Word = {
+  meaning: string
+}
 export default defineComponent({
   layout: 'empty',
   setup(_, { root: { $store } }) {
-    const wordData = reactive({
-      meanings: '',
+    const wordIndex = ref(0)
+    const wordList = reactive<Word[]>([])
+    firebase.auth().onAuthStateChanged(function (user) { 
+      if (user) {
+        getWordsData(user.uid)
+      } else {
+      }
     })
-    const getWordsData = () => {
+
+    const getWordsData = (userId: any) => {
+      console.log(userId)
       firebase
         .firestore()
-        .collection("words")
-        .doc("mYfr8BGrWok9jx6yd9bs")
+        .collection("words") 
+        .where("userId", "==", userId)
         .get()
-        .then((doc) => {
-          if (doc.exists) {
-            wordData.meanings = doc.data().meanings
-          }
+        .then(function (querySnapshot) {
+          console.log("querySnapshot")
+          querySnapshot.forEach(function (doc) {
+          console.log(doc.data())
+          wordList.push({
+            english: doc.data().english
+          })
+          
         })
+      })    
         .catch((err) => {
           console.log('Error getting document', err)
         })
     }
+    const changePreviousDisplayWord = (): void =>{
+      wordIndex.value = wordIndex.value - 1
+      console.log("changePreviousDisplayWord")
+    }
+    const changeNextDisplayWord = (): void => {
+      wordIndex.value = wordIndex.value + 1
+      console.log("changeNextDisplayWord")
+    }
     getWordsData()
     return {
-      wordData
+      wordList,
+      wordIndex,
+      changeNextDisplayWord,
+      changePreviousDisplayWord
     }
   }
 })
