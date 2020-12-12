@@ -6,7 +6,7 @@
         </p>
         <h1
         class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 flex flex-col items-center text-center mt-20 mb-20">
-        award
+        {{ wordData.english }}
       </h1>
         
         <div class="flex content-center mt-20 mb-20">
@@ -28,11 +28,33 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'nuxt-composition-api'
+import { defineComponent, reactive } from 'nuxt-composition-api'
 import firebase from '@/plugins/firebase.ts'
 export default defineComponent({
   layout: 'empty',
   setup(_, { root: { $store } }) {
+    const wordData = reactive({
+      english: '',
+    })
+    const getWordsData = () => {
+      firebase
+        .firestore()
+        .collection("words")
+        .doc("mYfr8BGrWok9jx6yd9bs")
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            wordData.english = doc.data().english
+          }
+        })
+        .catch((err) => {
+          console.log('Error getting document', err)
+        })
+    }
+    getWordsData()
+    return {
+      wordData
+    }
   }
 })
 </script>
