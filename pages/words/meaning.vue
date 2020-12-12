@@ -1,11 +1,11 @@
 <template>
   <div
-    class="flex flex-col-reverse sm:flex-row jusitfy-between items-center py-12"
+    class="flex flex-col-reverse jusitfy-between items-center py-12"
   >
     <div
-      class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left"
+      class="flex flex-col items-center text-center"
     >
-    <p class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left font-bold">
+    <p class="flex flex-col items-center text-center font-bold">
             Vocaburary Check!!
         </p>
       <h1

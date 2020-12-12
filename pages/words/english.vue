@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white flex flex-col font-sans sm:flex-row jusitfy-between items-center py-12">
-    <div class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left ">
-        <p class="sm:w-2/5 flex flex-col items-center sm:items-start text-center sm:text-left font-bold">
+  <div class="bg-white flex flex-col font-sans jusitfy-between items-center py-12">
+    <div class="flex flex-col items-center text-center">
+        <p class="flex flex-col items-center text-center font-bold">
             Vocaburary Check!!
         </p>
         <h1
-        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 sm:w-2/5 flex flex-col items-center sm:items-start text-center mt-20 mb-20"
+        class="text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2 sm:w-2/5 flex flex-col items-center text-center mt-20 mb-20"
       >
         award
       </h1>
