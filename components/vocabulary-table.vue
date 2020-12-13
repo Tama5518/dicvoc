@@ -9,12 +9,12 @@
         </thead>
         <tbody class="text-gray-900">
           <tr
-            v-for="(vocabularyId, index) in vocabularyList"
+            v-for="(vocabulary, index) in vocabularyList"
             :key="index"
             class="border-b bg-gray-100 hover:bg-orange-100 cursor-pointer"
-            @click="vocabularyLink(vocabulary.id)">
+            @click="vocabularyLink(vocabulary.vocabularyId)">
             <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal">
-                {{ vocabularyId.vocabulary }}
+                {{ vocabulary.vocabulary }}
             </td>
             <td class="py-3 px-5">
               <div class="flex justify-end items-center">
@@ -86,9 +86,9 @@ export default defineComponent({
             vocabularyId: doc.id,
             userId:doc.data().userId,
             wordIds: doc.data().wordIds,
-            vocabulary: doc.data().nameofVocabulary
+            vocabulary: doc.data().vocabulary
           })
-          
+          console.log("vocabularyList", vocabularyList)
         })
       })    
         .catch((err) => {
@@ -130,7 +130,6 @@ export default defineComponent({
         .then((docRef) => {
           window.location.href = "/vocabulary"
         });
-      console.log("vocabularyList", vocabularyList)
     };
     return {
       vocabularyList,
