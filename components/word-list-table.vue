@@ -1,5 +1,5 @@
 <template>
-  <div class="list-table shadow-md sm:rounded overflow-y-auto">
+  <div class="list-table shadow-md sm:rounded overflow-y-auto mx-2">
     <table class="w-full text-md bg-white">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
