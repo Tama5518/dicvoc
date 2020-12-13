@@ -7,7 +7,6 @@
         <tr class="border-b bg-blue-900 text-white">
           <th class="text-left p-3 px-5">English</th>
           <th class="text-left p-3 px-5">Meaning</th>
-          <th class="p-3 px-5"></th>
         </tr>
       </thead>
       <tbody class="text-black-900">
@@ -23,20 +22,6 @@
           <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal"
             >
             {{ word.meanings.join() }}
-          </td>
-          <td class="py-3 px-5">
-            <div class="flex justify-end items-center">
-                  <div
-                    class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
-                    @click="wordLink(word.id)"
-                  >
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
-                        />
-                  </div>
-                detail
-            </div>
           </td>
         </tr>
       </tbody>
