@@ -2,7 +2,7 @@
   <div class="bg-white flex flex-col font-sans jusitfy-between items-center py-12">
     <div class="flex flex-col items-center text-center">
         <p class="flex flex-col items-center text-center font-bold">
-            Vocaburary Check!!
+            Vocabulary Check!!
         </p>
       <h1
         v-if='wordList.length && displayMode == "english"'
@@ -83,7 +83,6 @@ export default defineComponent({
       wordIndex.value = wordIndex.value + 1}
       else(window.location.href = "/words")
     }
-    const meaningsIndex = ref(0)
 
     const displayMode = ref("english")
     const chanegeToAnother = () : void => {
