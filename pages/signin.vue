@@ -39,7 +39,7 @@ export default defineComponent({
     })
     function submit() {
       firebase.auth().signInWithEmailAndPassword(state.email, state.password)
-      .then(() => (location.href = '/users'))
+      .then(() => (location.href = '/words'))
       .catch(function(error) {
         // Handle Errors here.
         alert('ログインが失敗しました。errorCode: ' + error.code + ', errorMessage:' + error.message)
