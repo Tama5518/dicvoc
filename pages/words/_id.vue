@@ -6,6 +6,12 @@
         class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
         @click="setWord"
       >
+        <a href= "/vocabulary">単語帳一覧</a>
+      </button>
+      <button
+        class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
+        @click="setWord"
+      >
         <a href= "/words/add_simple">編集</a>
       </button>
     </PageHeading>
@@ -92,7 +98,7 @@
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
-        <p class="w-full px-1">  {{wordData.vacaburary}} </p>
+        <p class="w-full px-1">  {{wordData.vocabulary}} </p>
       </h2>
       
       
@@ -137,6 +143,7 @@ export default defineComponent({
       image: "",
       vocabulary: "",
     });
+    let userId = ""
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
@@ -161,6 +168,7 @@ export default defineComponent({
             wordData.image = doc.data().image
             wordData.vocabulary = doc.data().vocabulary
           }
+          console.log(wordData.vocabulary)
         })
         .catch((err) => {
           console.log('Error getting document', err)

@@ -85,7 +85,7 @@
     </div>
     <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
-        リンクのURL
+        リンク
       </h3>
       <h2
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
@@ -113,7 +113,7 @@
       
       
     </div>
-    <div>
+    <div v-if='vocabularies.length'>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         収納する単語帳
       </h3>
@@ -160,7 +160,7 @@ type Word = {
     wordclass: string;
     link: string;
     image: string;
-    music: string;
+    vocabulary: string;
 };
 export default defineComponent({
   components: {
@@ -176,7 +176,7 @@ export default defineComponent({
         wordclass: "",
         link: "",
         image: "",
-        music: "",
+        vocabulary: "",
     });
     let userId = ""
     firebase.auth().onAuthStateChanged(function (user) {
@@ -217,7 +217,9 @@ export default defineComponent({
         image: wordData.image,
         link: wordData.link,
         meanings: wordData.meanings,
-        music: wordData.music,
+        vocabulary: vocabularies.filter((vocabulary)=>{
+          return vocabulary.id == selectedVocabularyId.value
+        })[0].vocabulary,
         userId: userId,
         wordclass: wordData.wordclass,
       }

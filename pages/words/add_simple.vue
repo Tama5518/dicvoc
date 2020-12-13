@@ -43,7 +43,7 @@
         />
       </h2>
       </div>
-      <div>
+      <div v-if='vocabularies.length'>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         収納する単語帳
       </h3>
@@ -62,7 +62,7 @@
           </option>
         </select>
       </h2>
-    </div>
+      </div>
         <hr class="my-4 sm:my-8" /> 　
         <!-- 一番したのテンプレートの文字位置 -->
         
@@ -86,6 +86,12 @@ import firebase from "@/plugins/firebase.ts";
 type Word = {
   english: string;
   meanings: [];
+  example: string;
+  wordclass: string;
+  link: string;
+  image: string;
+  vocabulary: string;
+  
 };
 export default defineComponent({
   components: {
@@ -97,6 +103,11 @@ export default defineComponent({
     const wordData = reactive<Word>({
       english: "",
       meanings: [],
+      example: "",
+      wordclass: "",
+      link: "",
+      image: "",
+      vocabulary: "",
     });
     let userId = ""
     firebase.auth().onAuthStateChanged(function (user) {
@@ -136,7 +147,15 @@ export default defineComponent({
     const setWord = (): void => {
       const data = {
         english: wordData.english,
-        meanings: wordData.meanings
+        example: wordData.example,
+        image: wordData.image,
+        link: wordData.link,
+        meanings: wordData.meanings,
+        vocabulary: vocabularies.filter((vocabulary)=>{
+          return vocabulary.id == selectedVocabularyId.value
+        })[0].vocabulary,
+        userId: userId,
+        wordclass: wordData.wordclass,
       }
       firebase
         .firestore()
