@@ -1,4 +1,5 @@
 <template>
+
   <div class="bg-white flex flex-col font-sans jusitfy-between items-center py-12">
     <div class="flex flex-col items-center text-center">
         <p class="flex flex-col items-center text-center font-bold">
@@ -26,9 +27,15 @@
            <button 
             @click="changePreviousDisplayWord()"
             class="font-semibold text-blue-900 mb-20 px-10 rounded">前へ</button>
+             <button 
+            @click="stopDisplayWord()"
+            class="font-semibold text-blue-900 mb-20 px-10 rounded">
+            <a href= "/words/">やめる</a>
+            </button>
            <button 
             @click="changeNextDisplayWord()"
-            class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ</button>
+            class="font-semibold text-blue-900 mb-20 px-10 rounded">次へ
+            </button>
         </div>
         
     </div>

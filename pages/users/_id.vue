@@ -1,6 +1,14 @@
 <template>
   <div class="container mx-auto">
-    <PageHeading>メンバープロフィール</PageHeading>
+    <PageHeading>
+      メンバープロフィール
+　　　<button
+        class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
+        @click="setWord"
+      >
+        <a href= "/vocabulary">単語帳に進む</a>
+     </button>
+    </PageHeading>
     <div class="lg:w-11/12 mx-auto flex flex-wrap">
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
         <ProfileNameIcon

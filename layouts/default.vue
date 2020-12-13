@@ -15,6 +15,13 @@
         <nav class="hidden md:flex text-lg">
           <a
             v-if="isSignedIn()"
+            href="/words/english"
+            class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
+          >
+           単語再生
+          </a>
+          <a
+            v-if="isSignedIn()"
             href="/words"
             class="text-blue-900 hover:text-blue-600 py-3 px-6 text-sm font-bold"
           >
