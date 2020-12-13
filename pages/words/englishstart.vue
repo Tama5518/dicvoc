@@ -1,6 +1,10 @@
 <template>
   <div class="container mx-auto">
-    <PageHeading>{{ vocabulary.vocabulary }}</PageHeading>
+    <PageHeading>{{ vocabulary.vocabulary }}
+      <p class="flex flex-col items-center text-center font-bold">
+            Vocabulary Check!!
+        </p>
+    </PageHeading>
     <div class="lg:w-11/12 mx-auto flex justify-center flex flex-wrap flex items-center">
       <table class="w-full text-md bg-white mx-3">
       <thead>
@@ -115,7 +119,7 @@ export default defineComponent({
       })
 
     const wordStart = (): void =>{
-      window.location.href = '/words/test/' + root.$route.params.id
+      window.location.href = '/words/english/'
     } 
 
     const wordLink = (wordId: string): void => {
