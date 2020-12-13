@@ -30,7 +30,7 @@
              <button 
             @click="stopDisplayWord()"
             class="font-semibold text-blue-900 mb-20 px-10 rounded">
-            <a href= "/words/">やめる</a>
+            <a href= "/words">やめる</a>
             </button>
            <button 
             @click="changeNextDisplayWord()"

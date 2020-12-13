@@ -13,7 +13,7 @@
       <p class="text-gray-600 leading-relaxed mb-6">
         <a href="/words" class="text-blue-900">自分だけの辞書機能</a>
         と
-        <a href="/users" class="text-blue-900">ボキャブラリー追加機能</a>
+        <a href="/words/add_simple" class="text-blue-900">ボキャブラリー追加機能</a>
       </p>
     </div>
     <div class="mb-16 sm:mb-0 mt-8 sm:mt-0 sm:w-3/5 sm:pl-12">
