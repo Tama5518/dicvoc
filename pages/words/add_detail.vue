@@ -160,7 +160,7 @@ type Word = {
     wordclass: string;
     link: string;
     image: string;
-    music: string;
+    vocabulary: string;
 };
 export default defineComponent({
   components: {
@@ -176,7 +176,7 @@ export default defineComponent({
         wordclass: "",
         link: "",
         image: "",
-        music: "",
+        vocabulary: "",
     });
     let userId = ""
     firebase.auth().onAuthStateChanged(function (user) {
@@ -217,7 +217,9 @@ export default defineComponent({
         image: wordData.image,
         link: wordData.link,
         meanings: wordData.meanings,
-        music: wordData.music,
+        vocabulary: vocabularies.filter((vocabulary)=>{
+          return vocabulary.id == selectedVocabularyId.value
+        })[0].vocabulary,
         userId: userId,
         wordclass: wordData.wordclass,
       }
