@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <PageHeading>単語帳詳細</PageHeading>
+    <PageHeading>{{ vocabulary.vocabulary }}</PageHeading>
     <div class="lg:w-11/12 mx-auto flex flex-wrap">
       <div class="p-4 lg:px-8 lg:w-1/2 w-full">
         <hr class="my-4 sm:my-8" />
@@ -18,6 +18,10 @@ import PageHeading from '@/components/page-heading.vue'
 import ProfileTable from '@/components/profile-element.vue'
 import wordslistJson from '@/mock/wordslist.json'
 import firebase from '@/plugins/firebase.ts'
+type Vocabulary = {
+  wordIds: [],
+  vocabulary: string
+}
 type Word = {
   id: string
   english: string
@@ -37,6 +41,27 @@ export default defineComponent({
     ProfileTable
   },
   setup(_, { root }: SetupContext) {
+    const vocabulary = reactive<Vocabulary>(
+      {
+        wordIds: [],
+        vocabulary: ""
+      }
+    )
+    firebase
+      .firestore()
+      .collection("vocabularies") 
+      .doc(root.$route.params.id)
+      .get()
+      .then((doc) => {
+        if (doc.exists){
+          vocabulary.wordIds = doc.data().wordIds
+          vocabulary.vocabulary = doc.data().vocabulary
+        }
+      }) 
+      .catch((err) => {
+        console.log('Error getting document', err)
+      })
+
     const vocabularyWordsData = reactive<Word[]>([])
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -44,6 +69,38 @@ export default defineComponent({
       } else {
       }
     })
+    const getWordsData = (userId: any) => {
+      firebase
+        .firestore()
+        .collection("vocabularies") 
+        .doc(root.$route.params.id)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+          vocabularyWordsData.push({
+            id: doc.id,
+            english: doc.data().english,
+            meanings: doc.data().meanings,
+            more: {
+              wordclass: doc.data().wordclass,
+              example: doc.data().example,
+              image: doc.data().image,
+              music: doc.data().music,
+              link: doc.data().link
+            }
+          })
+          console.log("vocabularyWordsData", vocabularyWordsData)
+        })
+      })    
+        .catch((err) => {
+          console.log('Error getting document', err)
+        })
+    }
+    const vocabularyLink = (vocabularyId: string): void => {
+      window.location.href = '/vocabulary/' + vocabularyId
+    }
+
+
 
     
 
