@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <PageHeading>{{ vocabulary.vocabulary }}</PageHeading>
-    <div class="lg:w-11/12 mx-auto flex flex-wrap">
+    <div class="lg:w-11/12 mx-auto flex justify-center flex flex-wrap flex items-center">
       <table class="w-full text-md bg-white mx-3">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
@@ -26,9 +26,10 @@
         </tr>
       </tbody>
     </table>
-    <!-- <div class = "text-sm bg-gray-300 hover:bg-gray-600 rounded-full flex items-center"> -->
-      <!-- <img class="h-10 w-10" src="../../assets/image/rotation.png" > -->
-    <!-- </div> -->
+    <div class = "text-sm bg-gray-300 hover:bg-gray-600 rounded-full flex items-center flex justify-center mt-16 mb-14"
+     @click="wordStart()">
+      <img class="h-10 w-10 flex flex justify-center items-center" src="../../assets/image/nc159643.png" >
+    </div>
       <!-- <ProfileTable class="mt-8 lg:w-1/2 w-full" :more="wordsData.more" /> -->
     </div>
   </div>
@@ -113,6 +114,10 @@ export default defineComponent({
       　console.log('Error getting document', err)
       })
 
+    const wordStart = (): void =>{
+      window.location.href = '/words/english/'
+    } 
+
     const wordLink = (wordId: string): void => {
       window.location.href = '/words/' + wordId
     }
@@ -146,7 +151,8 @@ export default defineComponent({
     return {
       vocabulary,
       wordList,
-      wordLink
+      wordLink,
+      wordStart
       
       // wordsData,
     }

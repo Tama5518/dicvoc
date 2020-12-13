@@ -1,7 +1,7 @@
 <template>
   <div>
     <PageHeading>単語一覧</PageHeading>
-    <ListTable class="my-4 lg:w-11/12 mx-auto" />
+    <ListTable class="my-4 lg:w-11/12 mx-16" />
     <hr class="my-12" />
     <div class="flex fllex-col flex justify-center items-center text-center mt-10">
             <div
