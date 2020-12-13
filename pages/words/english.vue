@@ -80,7 +80,8 @@ export default defineComponent({
     }
     const changeNextDisplayWord = (): void => {
       if (wordIndex.value != wordList.length - 1 ){
-      wordIndex.value = wordIndex.value + 1}
+      wordIndex.value = wordIndex.value + 1
+      displayMode.value="english"}
       else(window.location.href = "/words")
     }
 

@@ -26,9 +26,9 @@
         </tr>
       </tbody>
     </table>
-    <div class = "text-sm bg-gray-300 hover:bg-gray-600 rounded-full flex items-center">
-      <img class="h-10 w-10" src="../../assets/image/rotation.png" >
-    </div>
+    <!-- <div class = "text-sm bg-gray-300 hover:bg-gray-600 rounded-full flex items-center"> -->
+      <!-- <img class="h-10 w-10" src="../../assets/image/rotation.png" > -->
+    <!-- </div> -->
       <!-- <ProfileTable class="mt-8 lg:w-1/2 w-full" :more="wordsData.more" /> -->
     </div>
   </div>
