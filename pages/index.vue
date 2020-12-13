@@ -8,12 +8,12 @@
       <h1
         class="uppercase text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2"
       >
-        List &amp; Detail
+        Dic &amp; Voc
       </h1>
       <p class="text-gray-600 leading-relaxed mb-6">
-        <a href="/users" class="text-blue-900">メンバーリスト</a>
+        <a href="/words" class="text-blue-900">英単語</a>
         と
-        <a href="/profile" class="text-blue-900">プロフィール</a>
+        <a href="/users" class="text-blue-900">フレンズ</a>
       </p>
     </div>
     <div class="mb-16 sm:mb-0 mt-8 sm:mt-0 sm:w-3/5 sm:pl-12">

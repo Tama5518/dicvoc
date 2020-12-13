@@ -71,13 +71,13 @@
               v-model="wordData.wordclass"
               class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
             >
-              <option value="admin">名詞</option>
-              <option value="admin">動詞</option>
-              <option value="member">形容詞</option>
-              <option value="admin">副詞</option>
-              <option value="admin">代名詞</option>
-              <option value="member">前置詞</option>
-              <option value="member">接続詞</option>
+              <option value="名詞">名詞</option>
+              <option value="動詞">動詞</option>
+              <option value="形容詞">形容詞</option>
+              <option value="副詞">副詞</option>
+              <option value="代名詞">代名詞</option>
+              <option value="前置詞">前置詞</option>
+              <option value="接続詞">接続詞</option>
             </select>
       </h2>
       
