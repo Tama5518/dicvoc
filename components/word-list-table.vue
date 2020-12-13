@@ -20,7 +20,7 @@
           </td>
           <td class="py-3 px-5 whitespace-no-wrap sm:whitespace-normal"
             >
-            {{ word.meanings }}
+            {{ word.meanings.join() }}
           </td>
           <td class="py-3 px-5">
             <div class="flex justify-end items-center">
