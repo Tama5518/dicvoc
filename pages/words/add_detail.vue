@@ -2,12 +2,12 @@
   <div class="container mx-auto">
     <PageHeading>
       単語登録
-      <button2
+      <button
         class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
         @click="setWord"
       >
         <a href= "/words/add_simple">簡易登録</a>
-      </button2>
+      </button>
       <button
         class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
         @click="setWord"
@@ -226,13 +226,15 @@ export default defineComponent({
         .collection("words") // usersコレクションの、
         .add(data) // dataをセットする
         .then((docRef) => {
-          firebase
-            .firestore()
-            .collection("vocabularies")
-            .doc(selectedVocabularyId.value)
-            .update({
-              wordIds: firebase.firestore.FieldValue.arrayUnion(docRef.id)
-            })
+          if (selectedVocabularyId.value) {
+            firebase
+              .firestore()
+              .collection("vocabularies")
+              .doc(selectedVocabularyId.value)
+              .update({
+                wordIds: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+              })
+          }
           window.location.href = "/words/"　+ docRef.id ; // 完了後、単語登録画面へ遷移
         });
     }
