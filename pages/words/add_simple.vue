@@ -43,7 +43,7 @@
         />
       </h2>
       </div>
-      <div>
+      <div v-if='vocabularies.length'>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         収納する単語帳
       </h3>
@@ -62,7 +62,7 @@
           </option>
         </select>
       </h2>
-    </div>
+      </div>
         <hr class="my-4 sm:my-8" /> 　
         <!-- 一番したのテンプレートの文字位置 -->
         

@@ -143,6 +143,7 @@ export default defineComponent({
       image: "",
       vocabulary: "",
     });
+    let userId = ""
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.

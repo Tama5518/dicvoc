@@ -8,7 +8,7 @@
           {{ wordsData.meaning }}
         </p>
       </div>
-      <ProfileTable class="mt-8 lg:w-1/2 w-full" :more="wordsData.more" />
+      <!-- <ProfileTable class="mt-8 lg:w-1/2 w-full" :more="wordsData.more" /> -->
     </div>
   </div>
 </template>
@@ -47,6 +47,9 @@ export default defineComponent({
         vocabulary: ""
       }
     )
+
+    const vocabularyWordsData: [] = []
+
     firebase
       .firestore()
       .collection("vocabularies") 
@@ -54,15 +57,28 @@ export default defineComponent({
       .get()
       .then((doc) => {
         if (doc.exists){
+          console.log("a")
           vocabulary.wordIds = doc.data().wordIds
           vocabulary.vocabulary = doc.data().vocabulary
-        }
-      }) 
+          firebase
+          .firestore()
+            .collection("words") 
+            // .where("id", "array-contains", vocabulary.wordIds)
+            .get()
+            .then(function (querySnapshot) {
+              querySnapshot.forEach(function (doc) {
+                console.log("doc",doc)
+              })
+              
+            })
+        } 
+      })
       .catch((err) => {
-        console.log('Error getting document', err)
+      　console.log('Error getting document', err)
       })
 
-    const vocabularyWordsData = reactive<Word[]>([])
+
+    reactive<Word[]>([])
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         getWordsData(user.uid)
@@ -127,9 +143,10 @@ export default defineComponent({
     // })
     //   })
     return {
+      vocabulary
       // wordsData,
     }
-  },
+  }
 })
 </script>
 <style></style>
