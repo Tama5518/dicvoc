@@ -1,13 +1,7 @@
 <template>
   <div class="container mx-auto">
     <PageHeading>
-      単語登録
-      <button2
-        class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
-        @click="setWord"
-      >
-        <a href= "/words/add_detail">詳細登録</a>
-      </button2>
+      単語編集
       <button
         class="w-20 text-center text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 mt-2 rounded focus:outline-none focus:shadow-outline"
         @click="setWord"
@@ -30,7 +24,7 @@
         />
       </h2>
     </div>
-      <div>
+       <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         Meanings
       </h3>
@@ -41,9 +35,79 @@
           v-model="wordData.meanings[0]"
           class="border w-full px-1"
         />
+      </h2> 
+    </div>
+    <div>
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
+        例文
+      </h3>
+      <h2
+        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
+      >
+        <input
+          v-model="wordData.example"
+          class="border w-full px-1"
+          
+        />
       </h2>
-      </div>
-      <div>
+      
+      
+    </div>
+    
+    <div>
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
+        品詞
+      </h3>
+      <h2
+        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
+      >
+        <select
+              v-model="wordData.wordclass"
+              class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+            >
+              <option value="admin">名詞</option>
+              <option value="admin">動詞</option>
+              <option value="member">形容詞</option>
+              <option value="admin">副詞</option>
+              <option value="admin">代名詞</option>
+              <option value="member">前置詞</option>
+              <option value="member">接続詞</option>
+            </select>
+      </h2>
+      
+      
+    </div>
+    <div>
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
+        リンクのURL
+      </h3>
+      <h2
+        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
+      >
+        <input
+          v-model="wordData.link"
+          class="border w-full px-1"
+        />
+      </h2>
+      
+      
+    </div>
+    <div>
+      <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
+        写真
+      </h3>
+      <h2
+        class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
+      >
+        <input
+          v-model="wordData.image"
+          class="border w-full px-1"
+        />
+      </h2>
+      
+      
+    </div>
+    <div>
       <h3 class="text-sm font-bold title-font text-black-500 tracking-widest">
         収納する単語帳
       </h3>
@@ -51,15 +115,15 @@
         class="text-blue-900 text-2xl sm:text-3xl title-font font-medium mb-1"
       >
         <select
-          v-model='selectedVocabularyId'
-          class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
+        v-model='selectedVocabularyId'
+        class="appearance-none bg-white w-half border py-3 px-4 pr-8 rounded focus:outline-none"
         >
-          <option 
-          v-for="(vocabulary) in vocabularies" 
-          :key='vocabulary.id'
-          :value="vocabulary.id">
-            {{vocabulary.vocabulary}}
-          </option>
+        <option 
+        v-for="(vocabulary) in vocabularies"
+        :key='vocabulary.id'
+        :value="vocabulary.id">
+          {{vocabulary.vocabulary}}
+        </option>
         </select>
       </h2>
     </div>
@@ -84,8 +148,13 @@ import ProfileTableEdit from "@/components/profile-table-edit.vue";
 import firebase from "@/plugins/firebase.ts";
 
 type Word = {
-  english: string;
-  meanings: [];
+    english: string;
+    meanings:[];
+    example: string;
+    wordclass: string;
+    link: string;
+    image: string;
+    music: string;
 };
 export default defineComponent({
   components: {
@@ -95,8 +164,13 @@ export default defineComponent({
   },
   setup(_, { root }: SetupContext) {
     const wordData = reactive<Word>({
-      english: "",
-      meanings: [],
+        english: "",
+        meanings: [],
+        example: "",
+        wordclass: "",
+        link: "",
+        image: "",
+        music: "",
     });
     let userId = ""
     firebase.auth().onAuthStateChanged(function (user) {
@@ -111,14 +185,12 @@ export default defineComponent({
     const vocabularies = reactive<any[]>([])
     const selectedVocabularyId = ref('')
     const getVocaburariesData = (userId: any) => {
-      console.log('getVocaburariesData', userId)
       firebase
         .firestore()
         .collection("vocabularies") 
         .where("userId", "==", userId)
         .get()
         .then(function (querySnapshot) {
-          console.log('then', querySnapshot)
           querySnapshot.forEach(function (doc) {
           vocabularies.push({
             id: doc.id,
@@ -126,7 +198,6 @@ export default defineComponent({
             vocabulary: doc.data().vocabulary,
             wordIds: doc.data().wordIds
           })
-          console.log('vocabularies', vocabularies)
         })
       })    
         .catch((err) => {
@@ -136,14 +207,19 @@ export default defineComponent({
     const setWord = (): void => {
       const data = {
         english: wordData.english,
-        meanings: wordData.meanings
+        example: wordData.example,
+        image: wordData.image,
+        link: wordData.link,
+        meanings: wordData.meanings,
+        music: wordData.music,
+        userId: userId,
+        wordclass: wordData.wordclass,
       }
       firebase
         .firestore()
         .collection("words") // usersコレクションの、
         .add(data) // dataをセットする
         .then((docRef) => {
-          console.log('selectedVocabularyId.value', selectedVocabularyId.value)
           firebase
             .firestore()
             .collection("vocabularies")
@@ -151,9 +227,9 @@ export default defineComponent({
             .update({
               wordIds: firebase.firestore.FieldValue.arrayUnion(docRef.id)
             })
-          // window.location.href = "/words/" + docRef.id // 完了後、単語登録画面へ遷移
+          window.location.href = "/words/"　+ docRef.id ; // 完了後、単語登録画面へ遷移
         });
-    };
+    }
     return {
       wordData,
       setWord,
