@@ -8,12 +8,12 @@
       <h1
         class="uppercase text-6xl text-blue-900 font-bold leading-none tracking-wide mb-2"
       >
-        Dic &amp; Voc
+        Dictionary &amp; Vocabulary
       </h1>
       <p class="text-gray-600 leading-relaxed mb-6">
-        <a href="/words" class="text-blue-900">英単語</a>
+        <a href="/words" class="text-blue-900">自分だけの辞書機能</a>
         と
-        <a href="/users" class="text-blue-900">フレンズ</a>
+        <a href="/users" class="text-blue-900">ボキャブラリー追加機能</a>
       </p>
     </div>
     <div class="mb-16 sm:mb-0 mt-8 sm:mt-0 sm:w-3/5 sm:pl-12">
