@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <PageHeading>{{ vocabulary.vocabulary }}</PageHeading>
     <div class="lg:w-11/12 mx-auto flex flex-wrap">
-        <table class="w-full text-md bg-white mx-3">
+      <table class="w-full text-md bg-white mx-3">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
           <th class="text-left p-3 px-5">English</th>
@@ -26,6 +26,9 @@
         </tr>
       </tbody>
     </table>
+    <div class = "text-sm bg-gray-300 hover:bg-gray-600 rounded-full flex items-center">
+      <img class="h-10 w-10" src="../../assets/image/rotation.png" >
+    </div>
       <!-- <ProfileTable class="mt-8 lg:w-1/2 w-full" :more="wordsData.more" /> -->
     </div>
   </div>
