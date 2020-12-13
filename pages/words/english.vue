@@ -2,7 +2,7 @@
   <div class="bg-white flex flex-col font-sans jusitfy-between items-center py-12">
     <div class="flex flex-col items-center text-center">
         <p class="flex flex-col items-center text-center font-bold">
-            Vocaburary Check!!
+            Vocabulary Check!!
         </p>
       <h1
         v-if='wordList.length && displayMode == "english"'

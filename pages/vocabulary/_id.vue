@@ -37,7 +37,7 @@ export default defineComponent({
     ProfileTable
   },
   setup(_, { root }: SetupContext) {
-    const vocaburaryWordsData = reactive<Word[]>([])
+    const vocabularyWordsData = reactive<Word[]>([])
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         getWordsData(user.uid)
@@ -50,12 +50,12 @@ export default defineComponent({
     // const getWordsData = (userId: any) => {
     //   firebase
     //     .firestore()
-    //     .collection("vocaburaries") 
+    //     .collection("vocabularies") 
     //     .where("userId", "==", userId)
     //     .get()
     //     .then(function (querySnapshot) {
     //       querySnapshot.forEach(function (doc) {
-    //       vocaburaryWordsData.push({
+    //       vocabularyWordsData.push({
     //         id: doc.id,
     //         english: doc.data().english,
     //         meanings: doc.data().meanings

@@ -118,7 +118,7 @@ type Word = {
     wordclass: string;
     link: string;
     image: string;
-    vocaburary: string;
+    vocabulary: string;
 };
 
 export default defineComponent({
@@ -135,7 +135,7 @@ export default defineComponent({
       wordclass: "",
       link: "",
       image: "",
-      vocaburary: "",
+      vocabulary: "",
     });
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -159,7 +159,7 @@ export default defineComponent({
             wordData.wordclass = doc.data().wordclass
             wordData.link = doc.data().link
             wordData.image = doc.data().image
-            wordData.vocaburary = doc.data().vocaburary
+            wordData.vocabulary = doc.data().vocabulary
           }
         })
         .catch((err) => {
