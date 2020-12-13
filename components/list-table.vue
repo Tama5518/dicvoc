@@ -1,6 +1,6 @@
 <template>
   <div class="list-table shadow-md sm:rounded overflow-y-auto">
-    <table class="w-full text-md bg-white">
+    <table class="w-full text-md bg-white mx-3">
       <thead>
         <tr class="border-b bg-blue-900 text-white">
           <th class="text-left p-3 px-5">ユーザーネーム</th>
